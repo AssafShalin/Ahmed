@@ -8,6 +8,8 @@ def main():
     sys.stdout.write('fetching random word...')
     sys.stdout.flush()
     randomWord = getRandomWord()
+    #replace spaces with %20 to avoid errors with google rest api
+    randomWord = randomWord.replace(" ", "%20");
     print(randomWord)
     sys.stdout.write('googling word...')
     sys.stdout.flush()
@@ -69,5 +71,7 @@ def setWindowsWallpaper(imgPath):
 
 def getPath():
     return os.path.abspath(os.path.dirname(sys.argv[0]))
+
+
 if __name__ == '__main__':
     main()
