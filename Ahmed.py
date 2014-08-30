@@ -8,8 +8,6 @@ def main():
     sys.stdout.write('fetching random word...')
     sys.stdout.flush()
     randomWord = getRandomWord()
-    #replace spaces with %20 to avoid errors with google rest api
-    randomWord = randomWord.replace(" ", "%20");
     print(randomWord)
     sys.stdout.write('googling word...')
     sys.stdout.flush()
@@ -34,6 +32,7 @@ def getRandomWord() -> str:
 
 
 def fetchGoogleResults(word) -> str:
+    word = word.replace(" ", "%20");
     res = httpGET('http://ajax.googleapis.com/ajax/services/search/images?v=1.0&imgsz=xxlarge&q=' + word)
     decjson = json.loads(res)
     results = decjson['responseData']['results'];
